@@ -108,6 +108,8 @@ text(pca2$x[,1:2], rownames(mtcars))
 
 ```
 
+
+
 ## Check out the PC loadings {.build}
 
 these show how much each variable is contributing to the PC.
