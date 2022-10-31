@@ -95,7 +95,14 @@ mtcars
 
 ```{r, echo=T}
 pca2 = prcomp(mtcars)
+
 plot(pca2)
+
+```
+
+## PCA compute and plot {.build}
+
+```{r, echo=T}
 plot(pca2$x[,1:2])
 text(pca2$x[,1:2], rownames(mtcars))
 
