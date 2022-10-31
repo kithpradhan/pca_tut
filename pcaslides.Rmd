@@ -73,7 +73,7 @@ lines(rbind(c(0,0),rot[,1]), col="red", lwd=3)
 
 ```
 
-## examine scores from PC1 (eigenvalues)
+## examine scores from PC1 
 
 ```{r, echo=T}
 #plot samples along the first principal component
