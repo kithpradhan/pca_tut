@@ -1,6 +1,6 @@
 ---
 title: "PCA intro"
-author: "kp"
+author: "Kith Pradhan"
 date: "2022-10-31"
 output: 
     ioslides_presentation: 
