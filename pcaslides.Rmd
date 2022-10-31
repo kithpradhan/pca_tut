@@ -1,0 +1,125 @@
+---
+title: "PCA intro"
+author: "kp"
+date: "2022-10-31"
+output: 
+    ioslides_presentation: 
+      css: 'scrollable_slides.css'
+
+---
+
+```{r setup, include=FALSE}
+```
+
+## PCA first example {.build}
+
+made up values of height and weight 
+
+```{r, echo=T}
+
+height = rnorm(100, m=5, s=1)
+weight = height*34+rnorm(100, 0,5)
+df = data.frame(height, weight)
+df$names = NA
+df[which.max(df$height), "names"] = "tallest"
+df[which.min(df$height), "names"] = "shortest"
+plot(df[,1:2])
+text(df[,1:2], df$names)
+
+```
+
+
+## Normalize data to make it easier to work with  {.build}
+
+```{r, echo=T}
+#center and scale data
+df$height = df$height-mean(df$height)
+df$weight = df$weight-mean(df$weight)
+df$height=df$height/sd(df$height)
+df$weight=df$weight/sd(df$weight)
+plot(df[,1:2]) 
+text(df[,1:2], df$names)
+
+
+```
+
+## compute principal components {.build}
+
+```{r, echo=T}
+#compute principle components
+pca = prcomp(df[,1:2], scale=F)
+
+str(pca)
+
+```
+
+- rotation: shows the loadings of the variables in each PC.  
+- x:  the new values of the samples across the PCs.  
+- sdev:  shows how much variance is explained by each PC.
+
+
+
+
+## Examine first principal component (eigenvector)
+
+```{r, echo=T}
+
+rot = pca$rotation
+
+#which direction maximized variance?
+plot(df[,1:2]) 
+text(df[,1:2], df$names)
+lines(rbind(c(0,0),rot[,1]), col="red", lwd=3)
+
+```
+
+## examine scores from PC1 (eigenvalues)
+
+```{r, echo=T}
+#plot samples along the first principal component
+plot(pca$x[,1], rep(0, nrow(df)))
+text(pca$x[,1], rep(0, nrow(df)), df$names)
+
+```
+
+
+## PCA second example {.build}
+
+
+```{r, echo=T}
+mtcars
+
+```
+
+## PCA compute and plot {.build}
+
+```{r, echo=T}
+pca2 = prcomp(mtcars)
+plot(pca2)
+plot(pca2$x[,1:2])
+text(pca2$x[,1:2], rownames(mtcars))
+
+```
+
+## Check out the PC loadings {.build}
+
+these show how much each variable is contributing to the PC.
+
+
+```{r, echo=T}
+pca2$rotation
+
+```
+
+
+## another way to plot PCA {.build}
+
+
+
+```{r, echo=T}
+library(ggfortify)
+autoplot(pca2, colour="disp", label=T)
+autoplot(pca2, colour="hp", label=T)
+autoplot(pca2, label=T, loadings=T, loadings.label=T)
+
+```

@@ -14,8 +14,8 @@ text(df[,1:2], df$names)
 #center and scale data
 df$height = df$height-mean(df$height)
 df$weight = df$weight-mean(df$weight)
-df$height=df$height/var(df$height)
-df$weight=df$weight/var(df$weight)
+df$height=df$height/sd(df$height)
+df$weight=df$weight/sd(df$weight)
 plot(df[,1:2]) 
 text(df[,1:2], df$names)
 
