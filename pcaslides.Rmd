@@ -5,7 +5,6 @@ date: "2023-10-27"
 output: 
     ioslides_presentation: 
       css: 'scrollable_slides.css'
-
 ---
 
 ```{r setup, include=FALSE}
@@ -13,7 +12,7 @@ output:
 
 ## PCA first example {.build}
 
-made up values of height and weight 
+made up values of height and weight
 
 ```{r, echo=T}
 
@@ -24,12 +23,11 @@ df$names = NA
 df[which.max(df$height), "names"] = "tallest"
 df[which.min(df$height), "names"] = "shortest"
 plot(df[,1:2])
-text(df[,1:2], df$names)
+text(df[,1:2], df$names, col="blue")
 
 ```
 
-
-## Normalize data to make it easier to work with  {.build}
+## Normalize data to make it easier to work with {.build}
 
 ```{r, echo=T}
 #center and scale data
@@ -38,7 +36,7 @@ df$weight = df$weight-mean(df$weight)
 df$height=df$height/sd(df$height)
 df$weight=df$weight/sd(df$weight)
 plot(df[,1:2]) 
-text(df[,1:2], df$names)
+text(df[,1:2], df$names, col="blue")
 
 
 ```
@@ -53,12 +51,9 @@ str(pca)
 
 ```
 
-- rotation: shows the loadings of the variables in each PC.  
-- x:  the new values of the samples across the PCs.  
-- sdev:  shows how much variance is explained by each PC.
-
-
-
+-   rotation: shows the loadings of the variables in each PC.\
+-   x: the new values of the samples across the PCs.\
+-   sdev: shows how much variance is explained by each PC.
 
 ## Examine first principal component (eigenvector)
 
@@ -68,23 +63,21 @@ rot = pca$rotation
 
 #which direction maximized variance?
 plot(df[,1:2]) 
-text(df[,1:2], df$names)
+text(df[,1:2], df$names, col="blue")
 lines(rbind(c(0,0),rot[,1]), col="red", lwd=3)
 
 ```
 
-## examine scores from PC1 
+## examine scores from PC1
 
 ```{r, echo=T}
 #plot samples along the first principal component
 plot(pca$x[,1], rep(0, nrow(df)))
-text(pca$x[,1], rep(0, nrow(df)), df$names)
+text(pca$x[,1], rep(0, nrow(df)), df$names, col="blue")
 
 ```
 
-
 ## PCA second example {.build}
-
 
 ```{r, echo=T}
 mtcars
@@ -108,22 +101,16 @@ text(pca2$x[,1:2], rownames(mtcars))
 
 ```
 
-
-
 ## Check out the PC loadings {.build}
 
 these show how much each variable is contributing to the PC.
-
 
 ```{r, echo=T}
 pca2$rotation
 
 ```
 
-
 ## another way to plot PCA {.build}
-
-
 
 ```{r, echo=T}
 library(ggfortify)
