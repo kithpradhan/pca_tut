@@ -1,5 +1,5 @@
 2+22+2
-
+3+3
 
 #make some data
 height = rnorm(100, m=5, s=1)
