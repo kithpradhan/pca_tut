@@ -15,7 +15,7 @@ output:
 made up values of height and weight
 
 ```{r, echo=T}
-
+#2024
 height = rnorm(100, m=5, s=1)
 weight = height*34+rnorm(100, 0,5)
 df = data.frame(height, weight)
